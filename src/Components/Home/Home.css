@@ -1,7 +1,108 @@
-.title {
-    text-align: center;
-}
-
-.overview{
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap'); 
+.home{
     display: flex;
+    flex-direction: column;
 }
+.main{
+  display: flex;
+  flex-direction: row;
+}
+.title{
+font-family: 'Ubuntu';
+font-style: normal;
+font-weight: normal;
+font-size: 50px;
+line-height: 15px;
+text-align: center;
+color: #000000;
+}
+.cover{
+    position: relative;
+    bottom: 100px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.para{
+font-family: 'Ubuntu';
+font-style: normal;
+font-weight: normal;
+font-size: 50px;
+line-height: 57px;
+background: linear-gradient(90deg, #FF3CAC 0%, #2B557C 67.19%, #2B86C5 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+margin-left: 10px;
+}
+.button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    bottom: 100px;
+}
+.started{
+    font-family: 'Ubuntu';
+    width: 350px;
+    font-size: 40px;
+    background: linear-gradient(90deg, #43E97B 0%, #38F9D7 100%);
+    border-radius: 50px;
+    padding: 10px;
+    cursor: pointer;
+}
+@media only screen and (max-width: 600px) {
+    .home{
+        display: flex;
+        flex-direction: column;
+    }
+    .main{
+      display: flex;
+      flex-direction: column;
+    }
+    .title{
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 50px;
+    line-height: 15px;
+    text-align: center;
+    color: #000000;
+    }
+    .cover{
+        position: relative;
+        bottom: 100px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    img{
+        padding: 5px;
+    }
+    .para{
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 25px;
+    line-height: 35px;
+    background: linear-gradient(90deg, #FF3CAC 0%, #2B557C 67.19%, #2B86C5 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    bottom: 50px;
+    padding: 5px;
+    }
+    .button{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        bottom: 100px;
+    }
+    .started{
+        font-family: 'Ubuntu';
+        width: 200px;
+        font-size: 20px;
+        background: linear-gradient(90deg, #43E97B 0%, #38F9D7 100%);
+        border-radius: 50px;
+        padding: 10px;
+        cursor: pointer;
+    }
+  }

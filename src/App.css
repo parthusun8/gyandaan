@@ -1,3 +1,4 @@
-* {
-  background-color: #b3cff0;
-}
+body {
+    background: linear-gradient(90deg, #ACCBEE 0%, #E7F0FD 100%);
+    background-repeat: no-repeat;
+  }
