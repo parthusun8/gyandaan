@@ -7,7 +7,7 @@ body {
   font-family: inherit;
 }
 
-.login {
+.signup {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -51,6 +51,22 @@ button {
   padding: 10px;
   cursor: pointer;
   margin: 15px;
+}
+form > span {
+  font-size: 1rem;
+}
+
+[type="checkbox"] {
+  vertical-align: middle;
+}
+.role {
+  display: flex;
+  flex-direction: row;
+}
+
+.option {
+  display: flex;
+  flex-direction: row;
 }
 span {
   font-size: 0.8rem;

@@ -1,4 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
+
 body {
-    background: linear-gradient(90deg, #ACCBEE 0%, #E7F0FD 100%);
-    background-repeat: no-repeat;
-  }
+  background: linear-gradient(90deg, #accbee 0%, #e7f0fd 100%);
+  background-repeat: no-repeat;
+}
+html {
+  font-family: "Ubuntu";
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+a {
+  text-decoration: none;
+}
