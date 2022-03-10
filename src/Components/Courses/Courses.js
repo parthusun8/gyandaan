@@ -13,6 +13,7 @@ function Courses() {
       <div className="courses-container">
         <Course />
         <Course />
+        <Course />
       </div>
     </div>
   );

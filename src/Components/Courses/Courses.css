@@ -4,9 +4,11 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
+  /* overflow: hidden; */
 }
 .courses {
   /* width: 100%; */
+  overflow: hidden;
 }
 .search-bar {
   position: absolute;
@@ -73,7 +75,6 @@ body {
   width: 100%;
   align-items: center;
   justify-content: space-evenly;
-  overflow: hidden;
 }
 .course {
   display: flex;
@@ -86,14 +87,11 @@ body {
   background-size: cover;
   border-radius: 20px;
   box-shadow: 6px 3px 20px 1px #0a7aab;
-  /* object-fit: contain; */
-  /* align-items: center; */
   justify-content: center;
   transition: all 0.5s;
 }
 .course:hover {
-  height: 270px;
-  width: 220px;
+  box-shadow: 3px 1px 20px 0px #0fc485;
 }
 .course > span {
   position: absolute;
