@@ -1,25 +1,61 @@
 import React, { useState } from "react";
 import "./signup.css";
-import { Link } from "react-router-dom";
-import { auth } from "../Firebase/firebase";
+import { Link, useNavigate } from "react-router-dom";
+import { auth, db } from "../Firebase/firebase";
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
 } from "firebase/auth";
-// import { createUserWithEmailAndPassword } from "firebase/auth";
+import { collection, addDoc, doc, getDoc } from "firebase/firestore";
 
 function SignUp() {
+  console.log(db);
+  let navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const register = (e) => {
+  async function getData_from_doc_name() {
+    const docRef = doc(db, "users", "ThvOFqMVFYcPEUTRjnCu");
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+    }
+  }
+  // getData_from_doc_name();
+  const data = {
+    firstName: "Parth",
+    lastName: "Sundarka",
+    age: 20,
+    email: "test123@gmail.com",
+    isTeacher: false,
+    username: "parthhhh123",
+  };
+
+  async function addNewDoc() {
+    const usersCollection = collection(db, "users");
+    try {
+      const newDoc = await addDoc(usersCollection, data);
+      console.log(newDoc);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  addNewDoc();
+
+  const register = async (e) => {
     e.preventDefault();
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+      .then(async (userCredential) => {
         //SIGNED IN
         const user = userCredential.user;
         if (user) {
-          alert("Registered");
+          console.log("Logged In hai");
+          // getData_from_doc_name();
         }
       })
       .catch((error) => {
@@ -28,6 +64,15 @@ function SignUp() {
         alert(errorcode, errorMessage);
       });
   };
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      console.log("Logged In hai");
+      navigate("/courses");
+    } else {
+      console.log("Logout");
+    }
+  });
 
   return (
     <div className="signup">
