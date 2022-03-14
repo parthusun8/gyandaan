@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Courses.css";
 import { Link } from "react-router-dom";
+import { db } from "../Firebase/firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 function Courses() {
   return (
@@ -22,12 +24,30 @@ function Courses() {
 export default Courses;
 
 function Navbar() {
+  const [firstName, setFirstName] = useState("");
+  async function getData_from_doc_name() {
+    const docRef = doc(db, "users", "tloB1vs4wETapr09aqOY");
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      //   console.log("Document data:", docSnap.data());
+      const userDetails = docSnap.data();
+      setFirstName(userDetails.firstName);
+      // console.log(firstName);
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+    }
+  }
+  getData_from_doc_name();
   return (
     <div className="nav">
       <h1>GyaanDaan</h1>
       <div className="options">
         <Link to={"/student"}>
-          <button className="btn">PROFILE</button>
+          <button className="btn">
+            {firstName ? firstName.toUpperCase() : "PROFILE"}
+          </button>
         </Link>
         <button className="btn">HISTORY</button>
         <Link to={"/dashboard"}>

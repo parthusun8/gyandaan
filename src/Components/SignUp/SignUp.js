@@ -9,24 +9,15 @@ import {
 import { collection, addDoc, doc, getDoc } from "firebase/firestore";
 
 function SignUp() {
-  console.log(db);
+  // console.log(db);
   let navigate = useNavigate();
 
   const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setlastName] = useState("");
   const [password, setPassword] = useState("");
+  const [teacher, setTeacher] = useState(false);
 
-  async function getData_from_doc_name() {
-    const docRef = doc(db, "users", "ThvOFqMVFYcPEUTRjnCu");
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
-    } else {
-      // doc.data() will be undefined in this case
-      console.log("No such document!");
-    }
-  }
-  // getData_from_doc_name();
   const data = {
     firstName: "Parth",
     lastName: "Sundarka",
@@ -38,6 +29,12 @@ function SignUp() {
 
   async function addNewDoc() {
     const usersCollection = collection(db, "users");
+    data.email = email;
+    data.isTeacher = teacher;
+    data.firstName = firstName;
+    data.lastName = lastName;
+    data.username = firstName + "45";
+    data.age = "20";
     try {
       const newDoc = await addDoc(usersCollection, data);
       console.log(newDoc);
@@ -45,7 +42,7 @@ function SignUp() {
       console.log(error);
     }
   }
-  addNewDoc();
+  // addNewDoc();
 
   const register = async (e) => {
     e.preventDefault();
@@ -54,8 +51,9 @@ function SignUp() {
         //SIGNED IN
         const user = userCredential.user;
         if (user) {
-          console.log("Logged In hai");
+          // console.log("Logged In hai");
           // getData_from_doc_name();
+          addNewDoc();
         }
       })
       .catch((error) => {
@@ -67,10 +65,10 @@ function SignUp() {
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      console.log("Logged In hai");
+      // console.log("Logged In hai");
       navigate("/courses");
     } else {
-      console.log("Logout");
+      // console.log("Logout");
     }
   });
 
@@ -80,33 +78,39 @@ function SignUp() {
       <form>
         <input
           type="text"
+          autoComplete="off"
           name=""
           id=""
           placeholder="First Name"
-          autoComplete="off"
+          onChange={(e) => {
+            setFirstName(e.target.value);
+          }}
           required
         />
         <input
           type="text"
+          autoComplete="off"
           name=""
           id=""
           placeholder="Last Name"
-          autoComplete="off"
+          onChange={(e) => {
+            setlastName(e.target.value);
+          }}
           required
         />
         <input
           type="email"
-          placeholder="Email Id"
           autoComplete="off"
-          required
+          placeholder="Email Id"
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
         <input
           type="password"
-          placeholder="Password"
           autoComplete="off"
-          required
+          placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
         <label htmlFor="roles">SELECT ROLE</label>
         <select name="roles" id="roles">
